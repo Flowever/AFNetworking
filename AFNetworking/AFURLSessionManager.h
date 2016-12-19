@@ -29,6 +29,8 @@
 #import "AFNetworkReachabilityManager.h"
 #endif
 
+#define DLT NSURLSessionDownloadTask
+
 /**
  `AFURLSessionManager` creates and manages an `NSURLSession` object based on a specified `NSURLSessionConfiguration` object, which conforms to `<NSURLSessionTaskDelegate>`, `<NSURLSessionDataDelegate>`, `<NSURLSessionDownloadDelegate>`, and `<NSURLSessionDelegate>`.
 
@@ -284,6 +286,12 @@ NS_ASSUME_NONNULL_BEGIN
                                              progress:(nullable void (^)(NSProgress *downloadProgress))downloadProgressBlock
                                           destination:(nullable NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
                                     completionHandler:(nullable void (^)(NSURLResponse *response, NSURL * _Nullable filePath, NSError * _Nullable error))completionHandler;
+
+
+- (DLT *)DLTaskWithRequest:(NSURLRequest *)request
+                                       progress:(nullable void (^)(NSProgress *downloadProgress))downloadProgressBlock
+                                    destination:(nullable NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+                              completionHandler:(nullable void (^)(NSURLResponse *response, NSURL * _Nullable filePath, NSError * _Nullable error))completionHandler;
 
 /**
  Creates an `NSURLSessionDownloadTask` with the specified resume data.
